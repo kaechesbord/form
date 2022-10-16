@@ -1,38 +1,64 @@
-.App {
-  text-align: center;
+body{
+  background-color: lightblue;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.form{
+  width: 550px;
+  height: 600px;
+  background-color: white;
+  padding: 10px;
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.names{
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  gap: 10px;
+}
+.names input{
+  border-radius: 3px;
+  height: 20px;
+  border: 1px solid gray;
+}
+.position{
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  height: 800px;
 }
-
-.App-link {
-  color: #61dafb;
+.button{
+  height: 50px;
+  width: 550px;
+  background-color:#0f68b6;
+  color: aliceblue;
+  border: 0cm;
+  border-radius: 5px;
+  margin-bottom: 20px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.input{
+  width: 220px;
+  margin-top: 20px;
+}
+.error{
+  color: red;
+}
+.check{
+  margin-right: 140px;
+}
+.grad-tel{
+  display: flex;
+  gap: 5px;
+}
+.grad-tel input{
+  border-radius: 3px;
+  height: 20px;
+  border: 1px solid gray;
+}
+.mail-pass input{
+  width: 28.5rem;
+  border-radius: 3px;
+  height: 20px;
+  border: 1px solid gray;
+}
+a:visited{
+  color:#0f68b6;
 }
