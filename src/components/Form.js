@@ -10,8 +10,10 @@ const Form = () => {
   const schema = yup.object().shape({
     email: yup.string().email().required(),
     password: yup.string().min(8).max(32).required(),
-    ime: yup.string(),
-    prezime: yup.string()
+    ime: yup.string().required(),
+    prezime: yup.string().required(),
+    broj: yup.string().min(9).required(),
+    grad: yup.string().required()
   });
   const {
     register,
@@ -36,6 +38,7 @@ const Form = () => {
         });
       });
   };
+  
   return (
     <div className="position">
       <form className="form" onSubmit={handleSubmit(onSubmitHandler)}>
@@ -57,13 +60,13 @@ const Form = () => {
         </div>
         <br />
         <div className="grad-tel">
-        <input className="input" type="text" placeholder="Grad" {...register("email")} required />
-        <p className="error">{errors.email?.message}</p>
+        <input className="input" type="text" placeholder="Grad" {...register("grad")} required />
+        <p className="error">{errors.grad?.message}</p>
         <input
           className="input"
-          type="password"
+          type="text"
           placeholder="Telefon"
-          {...register("password")}
+          {...register("broj")}
           required
         />{" "}
         </div>
