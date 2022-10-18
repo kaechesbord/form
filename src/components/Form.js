@@ -8,11 +8,11 @@ import Swal from "sweetalert2";
 
 const Form = () => {
   const schema = yup.object().shape({
-    email: yup.string().email().required(),
-    password: yup.string().min(8).max(32).required(),
+    email: yup.string().email().required("asdasd"),
+    password: yup.string().min(8).max(32).required("asdasd"),
     ime: yup.string().required(),
     prezime: yup.string().required(),
-    broj: yup.string().min(9).required(),
+    broj: yup.string().min(9).required("broj treba bit bosanski"),
     grad: yup.string().required()
   });
   const {
@@ -45,9 +45,9 @@ const Form = () => {
         <h1>Registracija</h1>
         <p> Ja sam </p> 
         <input type="radio" id="fl"/>
-        <label htmlFor="fl" className="check">Fizičko Lice</label>
+        <label htmlFor="fl" className="check" required>Fizičko Lice</label>
         <input type="radio" id="pl"/>
-        <label htmlFor="pl">Pravno Lice</label>
+        <label htmlFor="pl" required>Pravno Lice</label>
         <div className="names">
         <input className="input" type="text" placeholder="Ime" {...register("ime")} required />
         <input
@@ -61,7 +61,6 @@ const Form = () => {
         <br />
         <div className="grad-tel">
         <input className="input" type="text" placeholder="Grad" {...register("grad")} required />
-        <p className="error">{errors.grad?.message}</p>
         <input
           className="input"
           type="text"
@@ -71,7 +70,6 @@ const Form = () => {
         />{" "}
         </div>
         <br />
-        <p className="error">{errors.password?.message}</p>
         <div className="mail-pass">
         <input className="input" type="text" placeholder="Email" {...register("email")} required />
         <p className="error">{errors.email?.message}</p>
