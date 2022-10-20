@@ -5,15 +5,17 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import "../App.css";
 import axios from "axios";
 import Swal from "sweetalert2";
+import {Link} from "react-router-dom"
 
-const Form = () => {
+const Registration = () => {
   const schema = yup.object().shape({
-    email: yup.string().email().required("asdasd"),
-    password: yup.string().min(8).max(32).required("asdasd"),
+    email: yup.string().email().required(),
+    password: yup.string().min(8).max(32).required(),
     ime: yup.string().required(),
     prezime: yup.string().required(),
-    broj: yup.string().min(9).required("broj treba bit bosanski"),
-    grad: yup.string().required()
+    broj: yup.string().required(),
+    grad: yup.string().required(),
+    type: yup.string().required()
   });
   const {
     register,
@@ -29,7 +31,8 @@ const Form = () => {
   };
   const postUser = async (data) => {
     await axios
-      .post("https://api.enovaapp.com/login", data)
+      .post("https://api.enovaapp.com/signup", data)
+      .then(localStorage.setItem("id" , data))
       .catch(() => {
         Swal.fire({
           icon: "error",
@@ -38,16 +41,24 @@ const Form = () => {
         });
       });
   };
+  const getProfile = () => {
+    const id = localStorage.getItem("id")
+    axios.get(`https://api.enovaapp.com/profiles/${id}`, {
+      headers: {
+        "Authorization": `Bearer ${access_token}`
+      }
+    })
+  };
   
   return (
     <div className="position">
       <form className="form" onSubmit={handleSubmit(onSubmitHandler)}>
         <h1>Registracija</h1>
         <p> Ja sam </p> 
-        <input type="radio" id="fl"/>
-        <label htmlFor="fl" className="check" required>Fizičko Lice</label>
-        <input type="radio" id="pl"/>
-        <label htmlFor="pl" required>Pravno Lice</label>
+        <input type="radio" name="checker"{...register("type")}  value="PHYSICAL_PERSON" required />
+        <label className="check">Fizičko Lice</label>
+        <input type="radio" name="checker"{...register("type")}  value="LEGAL_ENTITY" required/>
+        <label>Pravno Lice</label>
         <div className="names">
         <input className="input" type="text" placeholder="Ime" {...register("ime")} required />
         <input
@@ -85,10 +96,10 @@ const Form = () => {
         <p className="error">{errors.password?.message}</p>
         <button className="button">Registruj se</button>
         <strong>Registrovan korisnik?</strong> <br/>
-        <a href="#">Prijavi se ovdje</a>
+        <Link to="/login">Prijavi se ovdje</Link>
       </form>
     </div>
   );
 };
 
-export default Form;
+export default Registration;
