@@ -31,8 +31,11 @@ const Registration = () => {
   };
   const postUser = async (data) => {
     await axios
-      .post("https://api.enovaapp.com/signup", data)
-      .then(localStorage.setItem("id" , data))
+      .post("https://api.enovaapp.com/login", data)
+      .then((response) => {
+        const data = response.data
+        localStorage.setItem("data_id", JSON.stringify(data))
+      })
       .catch(() => {
         Swal.fire({
           icon: "error",
@@ -41,14 +44,7 @@ const Registration = () => {
         });
       });
   };
-  const getProfile = () => {
-    const id = localStorage.getItem("id")
-    axios.get(`https://api.enovaapp.com/profiles/${id}`, {
-      headers: {
-        "Authorization": `Bearer ${access_token}`
-      }
-    })
-  };
+  
   
   return (
     <div className="position">

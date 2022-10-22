@@ -36,6 +36,16 @@ const Login = () => {
         });
       });
   };
+  const getProfile = () => {
+    const data = localStorage.getItem(JSON.parse("data_id"))
+    const id = data.id
+    const token = data.token
+    axios.get(`https://api.enovaapp.com/profiles/${id}`, {
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    })
+  };
   return (
     <div className="position">
       <form className="login-form" onSubmit={handleSubmit(onSubmitHandler)}>
@@ -52,7 +62,7 @@ const Login = () => {
         />{" "}
         <br />
         <p className="error">{errors.password?.message}</p>
-        <button className="button">Ulogiraj se</button>
+        <Link to="/home"><button onClick={getProfile} className="button">Ulogiraj se</button></Link> 
         <strong>Nemaš korisnički račun?</strong> <br/>
         <Link to="/">Registruj se ovdje</Link>
       </form>
