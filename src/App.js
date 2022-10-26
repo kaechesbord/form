@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
-import Products from './pages/Products'
+import Home from './components/Home';
+import Registration from './components/Registration';
 import Login from './pages/Login'
 import ProtectedRoutes from './components/ProtectedRoute';
 
@@ -12,7 +12,7 @@ function App() {
           <Routes>
             <Route element={<ProtectedRoutes />}>
                 <Route element={<Home/>} path="/" exact/>
-                <Route element={<Products/>} path="/products"/>
+                <Route element={<Registration/>} path="/products"/>
             </Route>
             <Route element={<Login/>} path="/login"/>
           </Routes>

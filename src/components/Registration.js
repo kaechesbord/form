@@ -86,7 +86,7 @@ const Registration = () => {
         </div>
         <br />
         <p className="error">{errors.password?.message}</p>
-        <button className="button">Registruj se</button>
+        <Link to="/login"> <button className="button">Registruj se</button></Link>
         <strong>Registrovan korisnik?</strong> <br/>
         <Link to="/login">Prijavi se ovdje</Link>
       </form>
