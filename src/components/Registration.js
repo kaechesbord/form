@@ -36,12 +36,8 @@ const Registration = () => {
         const data = response.data
         localStorage.setItem("data_id", JSON.stringify(data))
       })
-      .catch(() => {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Invalid Email!",
-        });
+      .catch((err) => {
+        console.log(err)
       });
   };
   

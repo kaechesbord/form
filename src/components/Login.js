@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -29,13 +29,16 @@ const Login = () => {
     await axios
       .post("https://api.enovaapp.com/login", data)
       .catch(() => {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Invalid Email!",
-        });
+       
       });
   };
+  const swal = () => {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Invalid Email!",
+    });
+  }
   const getProfile = () => {
     const data = localStorage.getItem(JSON.parse("data_id"))
     const id = data.id
